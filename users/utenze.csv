@@ -1,2 +1,2 @@
 id;cognome;nome;title;description;mails;groups;dominio;authdomain;pswd
-itacsq;SCQUIZZATO;CHRISTIAN;Consultant;EXTERNAL;christian.scquizzato@bidcompany.it;SQL Server Users;europe;DefaultAuth;Orion123
+itacsq;SCQUIZZATO;CHRISTIAN;Consultant;EXTERNAL;christian.scquizzato@bidcompany.it;SQL Server Users,SAS Studio: Usage,Form Approver;europe;DefaultAuth;Orion123
