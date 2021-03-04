@@ -672,8 +672,6 @@ public class MDParser {
 					l.setPassword(pswd);
 					
 					p.getLogins().add(l);
-				}else {
-					setInternalLogin(name, pswd);
 				}
 				for(String goup : gNames) {
 					List<Group> groups = getGroups(goup);
@@ -694,7 +692,9 @@ public class MDParser {
 				p.updateMetadataAll();
 				LOGGER.debug("Add user: " + p.getId() + " " + p.getName());
 				
-				
+				if(isInternal == 1) {
+					setInternalLogin(name, pswd);
+				}
 				
 			}catch(Exception e){
 				LOGGER.error("User: " + name);
