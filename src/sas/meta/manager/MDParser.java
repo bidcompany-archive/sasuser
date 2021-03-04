@@ -266,7 +266,7 @@ public class MDParser {
 
 				String xmlSelect = 
 						"<XMLSELECT " +
-								"Search=\"*[@PublicType = 'UserGroup' ]\" />";
+								"Search=\"*[@PublicType = 'UserGroup' or @PublicType = 'Role'  ]\" />";
 				
 				
 				String sOptions = xmlSelect ; 
