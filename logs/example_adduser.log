@@ -1,0 +1,5 @@
+0    [main] INFO  zrunner.Main  - Started at: 20200629 14:23:41
+1048 [main] INFO  zrunner.Main  - New User: { user: { id:C321454, displayName:ABATE FRANCESCO, title:Head of Unit, description:FB00000142 - Internal Validation}}
+1048 [main] INFO  zrunner.Main  - New User: { user: { id:FB00369, displayName:ACCORSI ALBERTO, title:Head of Unit, description:FBICQREU04 - BILANCIO INDIVIDUALE}}
+1093 [main] INFO  zrunner.Main  - Execution took: 1141ms
+1093 [main] INFO  zrunner.Main  - END at : 20200629 14:23:42

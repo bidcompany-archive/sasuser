@@ -1,0 +1,4 @@
+0    [main] INFO  zrunner.Main  - Started at: 20200629 14:24:25
+912  [main] INFO  zrunner.Main  - No new Users!
+962  [main] INFO  zrunner.Main  - Execution took: 1010ms
+962  [main] INFO  zrunner.Main  - END at : 20200629 14:24:26
