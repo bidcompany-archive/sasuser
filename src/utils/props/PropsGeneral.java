@@ -18,6 +18,7 @@ public final class PropsGeneral implements Props{
 	private Properties prop = new Properties();
 	
 	private String csvPath;
+	private int userIIdentity;
 	private int csvIdPos;
 	private int csvSurnamePos;
 	private int csvNamePos;
@@ -50,6 +51,8 @@ public final class PropsGeneral implements Props{
 			
 			
 			csvPath  = prop.getProperty("engine.csv.path");
+			
+			userIIdentity = Integer.valueOf(prop.getProperty("engine.user.internal"));
 
 			csvIdPos = Integer.valueOf(prop.getProperty("csv.id.pos"));
 			csvSurnamePos = Integer.valueOf(prop.getProperty("csv.surname.pos"));
@@ -256,6 +259,16 @@ public final class PropsGeneral implements Props{
 
 	public void setCsvPswdPos(int csvPswdPos) {
 		this.csvPswdPos = csvPswdPos;
+	}
+
+
+	public int getUserIIdentity() {
+		return userIIdentity;
+	}
+
+
+	public void setUserIIdentity(int userIIdentity) {
+		this.userIIdentity = userIIdentity;
 	}
 
 	

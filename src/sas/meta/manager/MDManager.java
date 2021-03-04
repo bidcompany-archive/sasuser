@@ -379,9 +379,11 @@ public class MDManager {
 				store.dispose();
 			}
 			
+			
+			
 			mdchain.setUp(foundation, store);
 			// String name, String pswd, String authName, String domain, List<String> gNames, List<String> eMails
-			mdchain.addPerson(name, displayName, pswd, desc, off, authName, domain, gNames, eMails);
+			mdchain.addPerson(name, displayName, pswd, desc, off, authName, domain, gNames, eMails, prop.getUserIIdentity());
 				
 			
 		}catch(Exception e){
@@ -405,7 +407,8 @@ public class MDManager {
 		String authName = user.getLogin().getAuthDomain();
 		String domain = user.getLogin().getDomain();
 		
-		mdchain.addPerson(name, displayName, pswd, desc, title, authName, domain, gNames, eMails);
+		
+		mdchain.addPerson(name, displayName, pswd, desc, title, authName, domain, gNames, eMails, prop.getUserIIdentity());
 	}
 	
 	public void addUsers(List<UserBean> users) {

@@ -636,7 +636,8 @@ public class MDParser {
 		return authDom;
 	}
 	
-	public void addPerson(String name, String displayName, String pswd, String desc, String title, String authName, String domain, List<String> gNames, List<String> eMails){
+	public void addPerson(String name, String displayName, String pswd, String desc, 
+			String title, String authName, String domain, List<String> gNames, List<String> eMails, int isInternal){
 		if(foundation!=null){
 			try{
 				String reposFQID = foundation.getFQID();
@@ -655,22 +656,25 @@ public class MDParser {
 				p.setDesc(desc);
 				p.setDisplayName(displayName);
 				
-				
-				Login l = (Login) _factory.createComplexMetadataObject(
-						store,
-						null,
-						"Login." + name + ".39",
-						MetadataObjects.LOGIN,
-						shortReposID);
-				
-				
-				AuthenticationDomain authDom = getAuthDomain(authName);
-				l.getDomains().add(authDom);
-				l.setUserID(name + "@" + domain);
-				l.setPassword(pswd);
-				
-				p.getLogins().add(l);
-				
+				if(isInternal != 1) {
+					
+					Login l = (Login) _factory.createComplexMetadataObject(
+							store,
+							null,
+							"Login." + name + ".39",
+							MetadataObjects.LOGIN,
+							shortReposID);
+					
+					
+					AuthenticationDomain authDom = getAuthDomain(authName);
+					l.getDomains().add(authDom);
+					l.setUserID(name + "@" + domain);
+					l.setPassword(pswd);
+					
+					p.getLogins().add(l);
+				}else {
+					setInternalLogin(name, pswd);
+				}
 				for(String goup : gNames) {
 					List<Group> groups = getGroups(goup);
 					p.getIdentityGroups().addAll(groups);
