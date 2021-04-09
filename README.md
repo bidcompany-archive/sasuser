@@ -37,7 +37,7 @@ CSV Structure
 - domain: Active Directory domain e.g. europe
 - authdomain: DefaultAuth 
 - pswd: Password pushed within login authentication infos (not used from sas system)
-
+- loginID: Login Identitifaction
 
 JAVA Version
 Developed under java 1.8.17
