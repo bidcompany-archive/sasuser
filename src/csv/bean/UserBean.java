@@ -107,7 +107,7 @@ public class UserBean {
 		if(metaId!=null && !"".equals(metaId))
 			print += "uri: " + metaId + ", " ;
 		print += "id:" + id + ", displayName:" + displayName + ", title:" + title 
-				+ ", description:" + description ; 
+				+ ", description:" + description + ", username: " + login.getUsername(); 
 		print += "}";
 		print += "}" ; 
 		return print;

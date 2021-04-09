@@ -362,7 +362,7 @@ public class MDManager {
 		}
 		
 	}
-	public void addPerson(String name, String displayName, String pswd, String desc, String off, String authName, String domain, List<String> gNames, List<String> eMails) {
+	public void addPerson(String name, String displayName, String pswd, String desc, String off, String authName, String domain, List<String> gNames, List<String> eMails , String loginId) {
 		try{
 			store = _factory.createObjectStore();
 			MdOMIUtil omiUtil = _factory.getOMIUtil();
@@ -383,7 +383,7 @@ public class MDManager {
 			
 			mdchain.setUp(foundation, store);
 			// String name, String pswd, String authName, String domain, List<String> gNames, List<String> eMails
-			mdchain.addPerson(name, displayName, pswd, desc, off, authName, domain, gNames, eMails, prop.getUserIIdentity());
+			mdchain.addPerson(name, displayName, pswd, desc, off, authName, domain, gNames, eMails, loginId, prop.getUserIIdentity());
 				
 			
 		}catch(Exception e){
@@ -403,12 +403,14 @@ public class MDManager {
 		List<String> gNames = user.getGroups();
 		List<String> eMails = user.getEmails();
 		// LOGINS
+		
+		String loginid = user.getLogin().getId();
 		String pswd = user.getLogin().getPswd();
 		String authName = user.getLogin().getAuthDomain();
 		String domain = user.getLogin().getDomain();
 		
 		
-		mdchain.addPerson(name, displayName, pswd, desc, title, authName, domain, gNames, eMails, prop.getUserIIdentity());
+		mdchain.addPerson(name, displayName, pswd, desc, title, authName, domain, gNames, eMails, loginid, prop.getUserIIdentity());
 	}
 	
 	public void addUsers(List<UserBean> users) {

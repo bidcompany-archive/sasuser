@@ -637,7 +637,7 @@ public class MDParser {
 	}
 	
 	public void addPerson(String name, String displayName, String pswd, String desc, 
-			String title, String authName, String domain, List<String> gNames, List<String> eMails, int isInternal){
+			String title, String authName, String domain, List<String> gNames, List<String> eMails, String loginId, int isInternal){
 		if(foundation!=null){
 			try{
 				String reposFQID = foundation.getFQID();
@@ -668,7 +668,7 @@ public class MDParser {
 					
 					AuthenticationDomain authDom = getAuthDomain(authName);
 					l.getDomains().add(authDom);
-					l.setUserID(name + "@" + domain);
+					l.setUserID(domain + "\\" + loginId );
 					l.setPassword(pswd);
 					
 					p.getLogins().add(l);
