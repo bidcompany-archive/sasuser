@@ -29,6 +29,7 @@ public final class PropsGeneral implements Props{
 	private int csvDomainPos;
 	private int csvAuthDomainPos;
 	private int csvPswdPos;
+	private int csvLoginIdPos;
 	
 	
 	private String metaServerName;
@@ -64,6 +65,7 @@ public final class PropsGeneral implements Props{
 			csvDomainPos = Integer.valueOf(prop.getProperty("csv.domain.pos"));
 			csvAuthDomainPos = Integer.valueOf(prop.getProperty("csv.authdomain.pos"));
 			csvPswdPos = Integer.valueOf(prop.getProperty("csv.pswd.pos"));
+			csvLoginIdPos = Integer.valueOf(prop.getProperty("csv.loginid.pos"));
 			
 			
 			metaServerName = prop.getProperty("meta.env.addr");
@@ -99,6 +101,16 @@ public final class PropsGeneral implements Props{
 	
 	public PropsGeneral (){
 		loadProps();
+	}
+
+
+	public int getCsvLoginIdPos() {
+		return csvLoginIdPos;
+	}
+
+
+	public void setCsvLoginIdPos(int csvLoginIdPos) {
+		this.csvLoginIdPos = csvLoginIdPos;
 	}
 
 

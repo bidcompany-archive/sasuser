@@ -16,7 +16,7 @@ public class CSVManager {
 	private PropsGeneral prop;
 	private static final Logger LOGGER = Logger.getRootLogger();
 	
-	private final int _NUM_OF_FIELDS = 10;
+	private final int _NUM_OF_FIELDS = 11;
 	
 	private List<UserBean> users;
 	
@@ -38,7 +38,7 @@ public class CSVManager {
 			user.setEmail(line[prop.getCsvMailsPos()]);
 			user.setGroups(line[prop.getCsvGroupsPos()]);
 			user.setLogin(
-					line[prop.getCsvIdPos()], 
+					line[prop.getCsvLoginIdPos()], 
 					line[prop.getCsvDomainPos()], 
 					line[prop.getCsvPswdPos()], 
 					line[prop.getCsvAuthDomainPos()]
