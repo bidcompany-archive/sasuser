@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------------------
-itacsq 2021.03.04
+itacsq 2021.04.10
 ---------------------------------------------------------------------------------------
 
 
@@ -21,7 +21,9 @@ The tool:
 3. compare the two list to insert only new users
 4. add new users to metadataserver
 
-In the log (log4j compliant and adjustable accordingly to admin preferences) you can find details about operations and errors (all new insertions are logged).
+If have to specify either is an internal or an external login: within preference you can find a proper flag.
+
+In log (log4j compliant and adjustable accordingly to admin preferences) you can find details about operations and errors (all new insertions are logged).
 
 
 NOTES
@@ -37,7 +39,7 @@ CSV Structure
 - domain: Active Directory domain e.g. europe
 - authdomain: DefaultAuth 
 - pswd: Password pushed within login authentication infos (not used from sas system)
-- loginID: Login Identitifaction
+- loginID: Login Identitifaction field used as <id>@<authdomain> 
 
 JAVA Version
 Developed under java 1.8.17
