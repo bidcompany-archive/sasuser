@@ -47,5 +47,6 @@
 	<classpathentry kind="lib" path="libs/svntask.jar"/>
 	<classpathentry kind="lib" path="libs/sweetened.jar"/>
 	<classpathentry kind="lib" path="libs/corba-api-5.0.1.jar"/>
+	<classpathentry kind="lib" path="libs/SASpwd.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

@@ -349,6 +349,49 @@ public class MDParser {
 		}
 		
 	}
+
+	public Person getPerson(String displayName){
+		if(foundation!=null){
+			try{
+				String xmlSelect = 
+						"<XMLSELECT " +
+								"Search=\"*[@PublicType = 'User' ]\" />";
+				
+				
+				String sOptions = xmlSelect ; 
+			
+				int flags = 
+						MdOMIUtil.OMI_XMLSELECT 	|  
+						MdOMIUtil.OMI_ALL_SIMPLE 	| 
+						MdOMIUtil.OMI_GET_METADATA	
+						;
+				
+				
+				
+				
+				List objectList = _factory.getOMIUtil().getMetadataObjectsSubset(
+	                    store,
+	                    foundation.getFQID(),
+	                    MetadataObjects.PERSON,
+	                    flags,
+	                    sOptions
+	                    );
+				
+				
+				Iterator transItr = objectList.iterator();
+				while(transItr.hasNext()) {
+					Person p = (Person) transItr.next();
+					if(p.getName().equalsIgnoreCase(displayName))
+					return p;
+				}
+				
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		return null;
+	}
+	
 	
 	public List<Person> getPeople(){
 		List<Person> metaUsers = null;
@@ -557,6 +600,7 @@ public class MDParser {
 					// System.out.println("--> NAME: " + p.getName());
 					if(name.equalsIgnoreCase((p.getName()))) {
 						System.out.println("Delete PERSON >> " + name);
+						
 						_factory.deleteMetadataObject(p);
 					}
 					
@@ -638,25 +682,34 @@ public class MDParser {
 	
 	public void addPerson(String name, String displayName, String pswd, String desc, 
 			String title, String authName, String domain, List<String> gNames, List<String> eMails, String loginId, int isInternal){
+		Person p = null ; 
+		boolean exist = false ;
 		if(foundation!=null){
 			try{
 				String reposFQID = foundation.getFQID();
 				String shortReposID = reposFQID.substring(reposFQID.indexOf(".") + 1, reposFQID.length());
 
-				Person p = (Person) _factory.createComplexMetadataObject(
-						store,
-                        null,
-                        name,
-                        MetadataObjects.PERSON,
-                        shortReposID);
+				p = getPerson(name);
 				
-				p.setPublicType("User");
-				p.setUsageVersion(1000000.0);
+				if(p==null) {
+					p = (Person) _factory.createComplexMetadataObject(
+							store,
+	                        null,
+	                        name,
+	                        MetadataObjects.PERSON,
+	                        shortReposID);
+					
+					p.setPublicType("User");
+					p.setUsageVersion(1000000.0);
+				}else {
+					exist = true ; 
+				}
+					
 				p.setTitle(title);
 				p.setDesc(desc);
 				p.setDisplayName(displayName);
 				
-				if(isInternal != 1) {
+				if(isInternal != 1 && !exist) {
 					
 					Login l = (Login) _factory.createComplexMetadataObject(
 							store,
@@ -673,10 +726,18 @@ public class MDParser {
 					
 					p.getLogins().add(l);
 				}
+				
+				p.getIdentityGroups().removeAllElements();
+				p.updateMetadataAll();
+				
+				
 				for(String goup : gNames) {
 					List<Group> groups = getGroups(goup);
 					p.getIdentityGroups().addAll(groups);
 				}
+				
+				
+				p.getEmailAddresses().removeAllElements();
 				for(String email : eMails) {
 					Email em = (Email) _factory.createComplexMetadataObject(
 							store,
@@ -690,20 +751,21 @@ public class MDParser {
 				}
 				
 				p.updateMetadataAll();
+				
 				LOGGER.debug("Add user: " + p.getId() + " " + p.getName());
 				
-				if(isInternal == 1) {
+				if(isInternal >= 1 && !exist) {
 					setInternalLogin(name, pswd);
 				}
-				
+			
 			}catch(Exception e){
 				LOGGER.error("User: " + name);
 				e.printStackTrace();
 			}
+				
 		}
-		
-		
 	}
+		
 	
 	
 	public boolean setInternalLogin(String userName, String pswd) {
@@ -723,5 +785,19 @@ public class MDParser {
 		
 	}
 	
+	
+	public boolean resetGroups(Person p) {
+		boolean ret = false;
+		if(p!=null){
+			try{
+				p.getGroups().removeAllElements();;
+				p.updateMetadataAll();
+				ret = true ;
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		return ret;
+	}
 
 }

@@ -14,6 +14,7 @@ import com.sas.metadata.remote.MdOMIUtil;
 import com.sas.metadata.remote.MdOMRConnection;
 import com.sas.metadata.remote.MdObjectStore;
 import com.sas.metadata.remote.Person;
+import com.sas.util.SasPasswordString;
 
 import csv.bean.UserBean;
 import utils.props.PropsGeneral;
@@ -104,7 +105,13 @@ public class MDManager {
 		this.serverName = prop.getMetaServerName();
 		this.serverPort = prop.getMetaServerPort();
 		this.serverUser = prop.getMetaServerUser();
-		this.serverPass = prop.getMetaServerPass();
+		String decryptedPassword = prop.getMetaServerPass();
+		try {
+			if(SasPasswordString.isEncoded(decryptedPassword)) {
+				decryptedPassword = SasPasswordString.decode(prop.getMetaServerPass());
+			}
+		}catch(Exception e) {}
+		this.serverPass = decryptedPassword;
 		// Calls the factory’s constructor
 		initializeFactory();
 	}

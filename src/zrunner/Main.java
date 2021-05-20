@@ -79,11 +79,12 @@ public class Main {
 			boolean initObjs = initObjs();
 			if(md.connectToServer()) {
 				/** Extract Meta List and diff with CSV users */
-				List<UserBean> deltaUser = pm.getDiff(csv.getPeople(), md.getPeople());
+				// List<UserBean> deltaUser = pm.getDiff(csv.getPeople(), md.getPeople());
+				List<UserBean> allUsers = csv.getPeople();
 				/** Add new Users if any */
-				if(deltaUser!=null && deltaUser.size()>0) {
-					md.addUsers(deltaUser);
-					for(UserBean us : deltaUser)
+				if(allUsers!=null && allUsers.size()>0) {
+					md.addUsers(allUsers);
+					for(UserBean us : allUsers)
 						logger.info("New User: " + us);
 				}
 				else

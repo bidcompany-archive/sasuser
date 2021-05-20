@@ -1,2 +1,2 @@
 id;cognome;nome;title;description;mails;groups;dominio;authdomain;pswd;loginid
-itacsq;SCQUIZZATO;CHRISTIAN;Consultant;EXTERNAL;christian.scquizzato@bidcompany.it;SQL Server Users,SAS Studio: Usage,Form Approver;europe;DefaultAuth;Orion123;ultrascq
+itacsq;SCQUIZZATO;CHRISTIAN;Consultant 4;EXTERNAL;christian.scquizzato@bidcompany.it;Prova;europe;DefaultAuth;{SAS002}FA0C32065666E9390670210C01919081;ultrascq

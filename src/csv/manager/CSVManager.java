@@ -7,6 +7,8 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import com.sas.util.SasPasswordString;
+
 import csv.bean.UserBean;
 import utils.props.PropsGeneral;
 
@@ -37,10 +39,15 @@ public class CSVManager {
 			user.setDescription(line[prop.getCsvDescrPos()]);
 			user.setEmail(line[prop.getCsvMailsPos()]);
 			user.setGroups(line[prop.getCsvGroupsPos()]);
+			String decryptedPassword = line[prop.getCsvPswdPos()];
+			if(SasPasswordString.isEncoded(decryptedPassword)) {
+				decryptedPassword = SasPasswordString.decode(line[prop.getCsvPswdPos()]);
+			}
+			
 			user.setLogin(
 					line[prop.getCsvLoginIdPos()], 
 					line[prop.getCsvDomainPos()], 
-					line[prop.getCsvPswdPos()], 
+					decryptedPassword, 
 					line[prop.getCsvAuthDomainPos()]
 			);
 			
