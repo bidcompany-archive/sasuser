@@ -754,7 +754,7 @@ public class MDParser {
 				
 				LOGGER.debug("Add user: " + p.getId() + " " + p.getName());
 				
-				if(isInternal >= 1 && !exist) {
+				if(isInternal >= 1) {
 					setInternalLogin(name, pswd);
 				}
 			
